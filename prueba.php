@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wi&Ed Sistema de Redes</title>
+<link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+    <img src="imagenes/logo.png" alt="Wi&Ed Logo">
+</div>
+    <nav>
+        <a href="#planes">Planes</a>
+        <a href="#cobertura.html">Cobertura</a>
+        <a href="#pagos">Pagos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="php/login.php" class="btn-clientes">Área de Clientes</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Conectividad de Alta Velocidad</h1>
+<p>Internet estable, rápido y seguro para tu hogar y negocio.</p>
+<a href="#planes" class="btn-primary">Contratar Ahora</a>
+    </div>
+</section>
+
+<section id="planes" class="planes">
+    <h2>Manejamos paquetes desde:</h2>
+
+    <div class="card highlight">
+        <p class="price">$250</p>
+        <p>Ideal para tu hogar</p>
+        <button>Contratar</button>
+    </div>
+
+    <div class="card highlight">
+        <p class="price">$300</p>
+        <p>Ideal para tu hogar</p>
+        <button>Contratar</button>
+    </div>
+
+    <div class="card highlight">
+        <p class="price">$350</p>
+        <p>Maximo rendimiento</p>
+        <button>Contratar</button>
+
+    </div>
+
+     <div class="card highlight">
+        <p class="price">$400</p>
+        <p>Maximo rendimiento</p>
+        <button>Contratar</button>
+
+    </div>
+
+
+</section>
+
+<section id="beneficios" class="benefits">
+    <h2>¿Por qué elegir Wi&Ed?</h2>
+    <div class="benefit-grid">
+        <div>✔ Instalación rápida</div>
+        <div>✔ Soporte técnico local</div>
+        <div>✔ Conexión estable</div>
+        <div>✔ Pago en OXXO disponible</div>
+        <div>✔ Pago mediante transferencias</div>
+        <div>✔ Pagos totalmente accesibles</div>
+    </div>
+</section>
+
+<section id="pagos" class="payments">
+    <h2>Paga Fácil en por medio de OXXO PAY o realiza tu pago por medio de TRANSFERENCIAS BANCARIAS</h2>
+    <p>Realiza tu pago en cualquier tienda y activa tu servicio de manera automatica.</p>
+    <button onclick="generarReferencia()" class="btn-generar">
+    Generar Referencia
+</button>
+
+<div id="resultado" style="margin-top:15px; font-weight:bold;"></div>
+
+<script>
+function generarReferencia() {
+
+    fetch('php/guardar_referencia.php')
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("resultado").innerHTML =
+            "Tu referencia es: " + data;
+
+        let mensaje = "Hola, generé mi referencia Wi&Ed: " + data;
+
+        window.open("https://wa.me/529221763121?text=" + encodeURIComponent(mensaje), "_blank");
+
+    });
+
+}
+</script>
+<h2>Consultar mi recibo</h2>
+
+<form action="php/consultar.php" method="POST">
+    <input type="text" name="folio" placeholder="Ingresa tu folio" required>
+    <button type="submit">Buscar</button>
+</form>
+
+
+</section>
+
+
+<section class="ubicacion">
+    <h2>Nuestra Ubicación</h2>
+
+    <div class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30427.47054056282!2d-95.08172739446053!3d17.67466192451331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1772578591079!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+
+<footer>
+    <p>© 2026 Wi&Ed | Todos los derechos reservados</p>
+</footer>
+
+<a href="https://wa.me/529241963985?text=Hola%20quiero%20informacion%20sobre%20los%20planes%20de%20internet%20Wi%26Ed" class="whatsapp" target="_blank">
+    💬
+</a>
+
+<script>
+const counters = document.querySelectorAll('.counter');
+
+counters.forEach(counter => {
+    const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const speed = 2;
+
+        if(count < target) {
+            counter.innerText = Math.ceil(count + target / 40);
+            setTimeout(updateCount, speed);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    updateCount();
+});
+</script>
+
+
+
+
+
+
+</body>
+</html>
